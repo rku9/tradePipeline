@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: tradePipeline
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tradedb
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  mongodb:
+    uri: mongodb://localhost:27017/tradedb
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: trade-consumer-groupu
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+flyway:
+  enabled: true
+  locations: classpath:db/migration
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, beans, env
+  endpoint:
+    health:
+      show-details: always
+    beans:
+      show-details: always
+    env:
+      show-details: always
