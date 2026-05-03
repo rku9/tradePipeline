@@ -1,0 +1,1 @@
+alter table orders rename column arrived_at to created_at;
